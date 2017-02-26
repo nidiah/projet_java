@@ -1,8 +1,7 @@
 Lucene : Nidia Hernandez & Janaina Sabino
 
 Binôme 1 : Indexation d'un ensemble de texte  de recettes ( format texte )
-1. Contenu de l'index : Outre le texte de la recette, l'index doit contenir le nom du fichier
- contenant la recette ainsi que son chemin complet du fichier sur disque.
+1. Contenu de l'index : Outre le texte de la recette, l'index doit contenir le nom du fichier contenant la recette ainsi que son chemin complet du fichier sur disque.
 2. Le paramétrage d'entrée doit prévoir ( au moins ) :
 
     le nom du répertoire où sont les fichiers texte
@@ -18,12 +17,9 @@ l'index créé par Binôme 1. (voir https://lucene.apache.org/core/2_9_4/querypa
 2. On veut pouvoir paramétrer le nombre de résultats affichés à la fois
 
 
-Tâche commune : Définition et implémentation d'un paramétrage pour la localisation de l'index 
-( écrit par Binôme 1 et interrogé par Binôme 2, il faut pouvoir choisir l'index sur lequel
-on travaille , sans avoir à modifier le code)
+Tâche commune : Définition et implémentation d'un paramétrage pour la localisation de l'index ( écrit par Binôme 1 et interrogé par Binôme 2, il faut pouvoir choisir l'index sur lequel on travaille , sans avoir à modifier le code)
 
-Pour que Binôme 2 puisse commencer à travailler sans attendre les résultats de Binôme 1, je fournirai
-un zip contenant l'index Lucene tel qu'il devra être créé. Dans cet index les noms des champs sont les suivants:
+Pour que Binôme 2 puisse commencer à travailler sans attendre les résultats de Binôme 1, je fournirai un zip contenant l'index Lucene tel qu'il devra être créé. Dans cet index les noms des champs sont les suivants:
     contents : Le texte de la recette
     path : Le chemin complet du fichier la contenant ( ex: /home/user/recettes/babaorum.txt)
     filename: le nom du fichier la contenant (ex: babaorum.txt)
