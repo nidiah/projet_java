@@ -9,8 +9,9 @@ public class ProjetLucene {
 	Searcher searcher;
 	
 	public ProjetLucene(String cheminindex) throws IOException {
-		//initialisation de l'index
-    	 idx = new MyIndexer(cheminindex);
+		//initialisation de l'index et du searcher
+    	idx = new MyIndexer(cheminindex);
+    	searcher = new Searcher(idx.getIndexPath());
 	}
 	
 	public void createIndex(String chemincorpus) throws IOException{
@@ -19,20 +20,24 @@ public class ProjetLucene {
 		idx.IndexerCorpus(chemincorpus);
 	}
 	
-	public void search(String query, int resultnum) throws IOException, ParseException{
+	public void search(String query) throws IOException, ParseException{
 		System.out.println("Requête : "+query);
-		searcher = new Searcher(idx.getIndexPath());
-		searcher.setResultNumber(resultnum);
 		searcher.searchContent(query);
+	}
+
+	public void setResultNumber(int resultnum){
+		searcher.nbresultats = resultnum;
 	}
 	
 	public static void main(String[] args) throws IOException, ParseException {
 		//determiner le repertoire où sera créé l'index
-		ProjetLucene pl = new ProjetLucene("/Users/nidiahernandez/Desktop/index");
+		ProjetLucene pl = new ProjetLucene("/Users/namelastname/Desktop/index");
 		//donner le chemin du corpus à interroger
-		pl.createIndex("/Users/nidiahernandez/Desktop/TP-FS/_txt/2013");
+		pl.createIndex("/Users/namelastname/Desktop/corpus");
+		//fixer nombre de resultats (sinon 10 par défaut)
+		pl.setResultNumber(5);
 		//interroger le corpus
-		pl.search("France", 13);
+		pl.search("Hello");
 	}
 
 }

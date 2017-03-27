@@ -57,9 +57,9 @@ public class Searcher {
 	    }
 	    }
 	
-	public void setResultNumber(int n){
-		this.nbresultats = n;
-	}
+	// public void setResultNumber(int n){
+	// 	this.nbresultats = n;
+	// }
 	
 	public static void main(String[] args) throws IOException, ParseException {
 		
