@@ -16,15 +16,20 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.FSDirectory;
 
+/**
+ * Indexation de fichiers contenus dans un répertoire
+ * @author nidiahernandez
+ */
 public class MyIndexer {
-	
 	private IndexWriter w;
 	private String indexpath;
 	
-	//constructeur
-	//indexdir c'est le repertoire où sera crée l'index 
+	/**
+	 * Constructeur
+	 * @param indexdir Repertoire où sera crée l'index 
+	 * @throws IOException
+	 */
 	public MyIndexer(String indexdir) throws IOException { 
-		
 		//Creation de l'index
 		indexpath = indexdir;
 		FSDirectory dir = FSDirectory.open( Paths.get(indexpath)); //repertoire de l'index
@@ -34,9 +39,12 @@ public class MyIndexer {
 	    w = new IndexWriter(dir, config);
 	}
 	
-	
+	/**
+	 * Indexe les fichiers contenus dans un répertoire
+	 * @param corpusdir Chemin vers le corpus
+	 * @throws IOException
+	 */
 	public void IndexerCorpus(String corpusdir) throws IOException {
-	
 	    //AJout des fichiers à l'index
 	    File f = new File(corpusdir);
 		File filelist [] = f.listFiles();
@@ -57,6 +65,10 @@ public class MyIndexer {
 		System.out.println("\n"+docnum+" documents indexés\n");
 	}
 	
+	/**
+	 * Rend le chemin où l'index a été crée
+	 * @return
+	 */
 	public String getIndexPath(){
 		return indexpath;
 	}
