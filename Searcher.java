@@ -26,15 +26,16 @@ public class Searcher {
 	int nbresultats = 10;//nombre de resultats par défaut
 	
 	public Searcher(String cheminindex) throws IOException {
-		reader = DirectoryReader.open(FSDirectory.open(Paths.get(cheminindex)));
-	    searcher = new IndexSearcher(reader);
-	    analyzer = new StandardAnalyzer();
+		reader = DirectoryReader.open(FSDirectory.open(Paths.get(cheminindex))); //lecture du indice
+	    searcher = new IndexSearcher(reader); // implemente le search pour l'IndexReader
+	    analyzer = new StandardAnalyzer(); // construit un analysateur
 	}
 	
 	public void searchContent(String requete) throws ParseException, IOException {
-		QueryParser parser = new QueryParser("content", analyzer);
-	    Query q = parser.parse(requete);
+		QueryParser parser = new QueryParser("content", analyzer); // analisateur de la requete
+	    Query q = parser.parse(requete); // recherche analisé par le QueryParser
 
+	    // Calcul de similarité entre la query et les documents
 	    TopDocs results = searcher.search(q, 300000);
 	    ScoreDoc[] hits = results.scoreDocs;        
 	    System.out.println("Total : " +results.totalHits+ " documents répondent à la requête");
@@ -46,6 +47,7 @@ public class Searcher {
 	    	afficher = results.totalHits;
 	    }
 	    
+	    //Pour montrer les résultats
 	    for (int i=0;i<afficher;i++) {    
 	    	Document doc = searcher.doc(hits[i].doc);
 	        if (doc != null) {
@@ -62,13 +64,25 @@ public class Searcher {
 	// }
 	
 	public static void main(String[] args) throws IOException, ParseException {
+
 		
-		Searcher se = new Searcher("/Users/nidiahernandez/Desktop/projet_java/index");
-	    //se.setResultNumber(4);
-		se.searchContent("sel");
+		// Différents syntaxes pour les recherches
+        Searcher se = new Searcher("/home/janaina/Bureau/projet_java/index");
+        se.searchContent("beurre");
+        //se.searchContent("pomme OR sucre"); 
+        //se.searchContent("+sel +oignon"); 
+        //se.searchContent("pomme*");
+        //se.searchContent("(pomme OR banane) AND sucre");
+        //se.searchContent("pomme NOT sucre");
+        //se.searchContent("carotte~10");
+        //se.searchContent("sel~");
+        //se.searchContent("title:'BABA-utf-8' AND beurre"); //ça ne marche pas 
+        //se.searchContent("titre:crème"); //ça ne marche pas
+        //se.searchContent("title:(+crevettes +frites)"); //ça ne marche pas
 	    
 		  
 
 
 	}
 }	
+
